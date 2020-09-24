@@ -11,6 +11,7 @@ def get_default_config():
     cfg.model.load_weights = '' # path to model weights
     cfg.model.resume = '' # path to checkpoint for resume training
 
+
     # data
     cfg.data = CN()
     cfg.data.type = 'image'
@@ -19,7 +20,7 @@ def get_default_config():
     cfg.data.targets = ['market1501']
     cfg.data.workers = 4 # number of data loading workers
     cfg.data.split_id = 0 # split index
-    cfg.data.height = 256 # image height
+    cfg.data.height = 128 # image height
     cfg.data.width = 128 # image width
     cfg.data.combineall = False # combine train, query and gallery for training
     cfg.data.transforms = ['random_flip'] # data augmentation
@@ -53,7 +54,7 @@ def get_default_config():
     cfg.train.weight_decay = 5e-4
     cfg.train.max_epoch = 60
     cfg.train.start_epoch = 0
-    cfg.train.batch_size = 32
+    cfg.train.batch_size = 3
     cfg.train.fixbase_epoch = 0 # number of epochs to fix base layers
     cfg.train.open_layers = [
         'classifier'

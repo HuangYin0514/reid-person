@@ -15,8 +15,9 @@ class ImageSoftmaxNASEngine(Engine):
         scheduler=None,
         use_gpu=False,
         label_smooth=True,
-        ):
+            ):
         super(ImageSoftmaxNASEngine, self).__init__(datamanager, use_gpu)
+   
 
         self.model = model
         self.optimizer = optimizer
@@ -36,12 +37,11 @@ class ImageSoftmaxNASEngine(Engine):
             imgs = imgs.cuda()
             pids = pids.cuda()
 
-        for k in range(self.mc_iter):
-            outputs = self.model(imgs)
-            loss = self.compute_loss(self.criterion, outputs, pids)
-            self.optimizer.zero_grad()
-            loss.backward()
-            self.optimizer.step()
+        outputs = self.model(imgs)
+        loss = self.compute_loss(self.criterion, outputs, pids)
+        self.optimizer.zero_grad()
+        loss.backward()
+        self.optimizer.step()
 
         loss_dict = {
             'loss': loss.item(),

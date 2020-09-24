@@ -122,7 +122,7 @@ class PCB_RGA(nn.Module):
         batch_size = x.size(0)
         logits_list = [self.fc_list[i](features_H[i].view(batch_size, -1)) for i in range(self.parts)]
 
-        return logits_list, gloab_softmax
+        return logits_list
 
 
 def build_model(model_name, num_classes, **kwargs):
