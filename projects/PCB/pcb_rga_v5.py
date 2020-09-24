@@ -1,3 +1,4 @@
+from __future__ import division, absolute_import
 import torch
 from torch import nn
 from torch.nn import functional as F
@@ -46,7 +47,7 @@ class Resnet50_Branch(nn.Module):
 
 
 class PCB_RGA(nn.Module):
-    def __init__(self, num_classes,  loss='softmax', height=384, width=128, **kwargs):
+    def __init__(self, num_classes, loss='softmax', height=384, width=128, **kwargs):
         super(PCB_RGA, self).__init__()
         self.parts = 6
         self.num_classes = num_classes
@@ -54,7 +55,6 @@ class PCB_RGA(nn.Module):
 
         # backbone=============================================================================
         self.backbone = Resnet50_Branch()
-
 
         # gloab=============================================================================
         self.global_avgpool = nn.AdaptiveAvgPool2d((1, 1))
@@ -104,7 +104,7 @@ class PCB_RGA(nn.Module):
 
         # 1x1 conv([N, C=256, H=6, W=1])---------------------------------------------------------------------------------
         features_H = []
-        for i in range(self.parts): 
+        for i in range(self.parts):
             stripe_features_H = self.local_conv_list[i](features_G[:, :, i, :])
             features_H.append(stripe_features_H)
 
@@ -125,7 +125,8 @@ class PCB_RGA(nn.Module):
         return logits_list, gloab_softmax
 
 
-def pcb_rga_v5(num_classes, **kwargs):
+def build_model(model_name, num_classes, **kwargs):
+    model_name=model_name
     return PCB_RGA(
         num_classes=num_classes,
         **kwargs

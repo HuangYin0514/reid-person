@@ -23,7 +23,7 @@ def get_default_config():
     # data
     cfg.data = CN()
     cfg.data.type = 'image'
-    cfg.data.root = 'reid-data'
+    cfg.data.root = '/home/hy/vscode/data/'
     cfg.data.sources = ['market1501']
     cfg.data.targets = ['market1501']
     cfg.data.workers = 4 # number of data loading workers

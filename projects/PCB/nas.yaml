@@ -1,24 +1,17 @@
 model:
-  name: 'osnet_nas'
+  name: 'pcb'
   pretrained: False
-
-nas:
-  mc_iter: 1
-  init_lmda: 10.
-  min_lmda: 1.
-  lmda_decay_step: 20
-  lmda_decay_rate: 0.5
-  fixed_lmda: False
 
 data:
   type: 'image'
-  sources: ['msmt17']
+  root: '/kaggle/input/market1501/'
+  sources: ['market1501']
   targets: ['market1501']
   height: 256
   width: 128
   combineall: True
   transforms: ['random_flip', 'color_jitter']
-  save_dir: 'log/osnet_nas'
+  save_dir: 'log/market1501'
 
 loss:
   name: 'softmax'

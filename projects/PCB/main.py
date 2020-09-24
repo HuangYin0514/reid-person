@@ -11,9 +11,9 @@ from torchreid.utils import (
     Logger, check_isfile, set_random_seed, collect_env_info,
     resume_from_checkpoint, compute_model_complexity
 )
-from .pcb_rga_v5 import pcb_rga_v5 as pcb_rga_v5
-from .softmax_nas import ImageSoftmaxNASEngine
-from .default_config import (
+import pcb_rga_v5 
+from softmax_nas import ImageSoftmaxNASEngine
+from default_config import (
     imagedata_kwargs, optimizer_kwargs, engine_run_kwargs, get_default_config, lr_scheduler_kwargs
 )
 
@@ -94,7 +94,7 @@ def main():
     datamanager = torchreid.data.ImageDataManager(**imagedata_kwargs(cfg))
 
     print('Building model: {}'.format(cfg.model.name))
-    model = osnet_models.build_model(
+    model = pcb_rga_v5.build_model(
         cfg.model.name, num_classes=datamanager.num_train_pids
     )
     num_params, flops = compute_model_complexity(
@@ -133,10 +133,10 @@ def main():
     engine.run(**engine_run_kwargs(cfg))
 
     print('*** Display the found architecture ***')
-    if cfg.use_gpu:
-        model.module.build_child_graph()
-    else:
-        model.build_child_graph()
+    # if cfg.use_gpu:
+    #     model.module.build_child_graph()
+    # else:
+    #     model.build_child_graph()
 
 
 if __name__ == '__main__':
