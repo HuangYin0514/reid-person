@@ -11,15 +11,6 @@ def get_default_config():
     cfg.model.load_weights = '' # path to model weights
     cfg.model.resume = '' # path to checkpoint for resume training
 
-    # NAS
-    cfg.nas = CN()
-    cfg.nas.mc_iter = 1 # Monte Carlo sampling
-    cfg.nas.init_lmda = 10. # initial lambda value
-    cfg.nas.min_lmda = 1. # minimum lambda value
-    cfg.nas.lmda_decay_step = 20 # decay step for lambda
-    cfg.nas.lmda_decay_rate = 0.5 # decay rate for lambda
-    cfg.nas.fixed_lmda = False # keep lambda unchanged
-
     # data
     cfg.data = CN()
     cfg.data.type = 'image'

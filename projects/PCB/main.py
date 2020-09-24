@@ -122,13 +122,7 @@ def main():
         optimizer,
         scheduler=scheduler,
         use_gpu=cfg.use_gpu,
-        label_smooth=cfg.loss.softmax.label_smooth,
-        mc_iter=cfg.nas.mc_iter,
-        init_lmda=cfg.nas.init_lmda,
-        min_lmda=cfg.nas.min_lmda,
-        lmda_decay_step=cfg.nas.lmda_decay_step,
-        lmda_decay_rate=cfg.nas.lmda_decay_rate,
-        fixed_lmda=cfg.nas.fixed_lmda
+        label_smooth=cfg.loss.softmax.label_smooth
     )
     engine.run(**engine_run_kwargs(cfg))
 
