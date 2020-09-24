@@ -4,7 +4,7 @@ model:
 
 data:
   type: 'image'
-  root: '/kaggle/input/market1501/'
+  root: '/kaggle/input/'
   sources: ['market1501']
   targets: ['market1501']
   height: 256
